@@ -1,17 +1,16 @@
 namespace ProiectII.Migrations
 {
+    using ProiectII.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using ProiectII.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ProiectII.Models.ShopDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ProiectII.Models.ShopDBContext";
         }
 
         protected override void Seed(ProiectII.Models.ShopDBContext context)
@@ -28,9 +27,8 @@ namespace ProiectII.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
             context.Products.AddOrUpdate(x => x.Id,
-                new Product { Id = 1, Name = "Iphone", Description = "256Gb", Price = 3200, Stock = 123, Image = "lol" }
+                 new Product { Id = 1, Name = "Iphone", Description = "256Gb", Price = 3200, Stock = 123, Image = "lol" }
             );
         }
     }
