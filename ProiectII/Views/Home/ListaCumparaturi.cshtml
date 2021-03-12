@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProiectII.Models.Product>
+@{
+    ViewBag.Title = "ListaCumparaturi";
+}
+
+<h2>ListaCumparaturi</h2>
+
+<div>
+    <center>
+        <form id="form1" runat="server">
+
+            <div>
+
+                @foreach (var item in Model)
+                {<!-- un fel de for pentru introducerea itemelor -->
+
+                    <!--Class col-md-3 ii standar si se foloseste pentru a imparti in mai multe coloate-->
+                    <div class="col-md-3" style="margin-bottom:25px">
+                        <div>
+                            <!--De aici vine facut produsul-->
+                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.ActionLink("Detali", "Detali", new { id = item.Id })
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </form>
+    </center>
+
+
+</div>
+@TempData["buttonval1"]
