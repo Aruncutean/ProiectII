@@ -83,8 +83,8 @@ namespace ProiectII.Controllers
                         {
                             db.Configuration.ValidateOnSaveEnabled = false;
 
-                            //   db.Users.Add(user);
-                            //  db.SaveChanges();
+                             db.Users.Add(user);
+                             db.SaveChanges();
                             return RedirectToAction("Index");
 
                         }
@@ -128,7 +128,7 @@ namespace ProiectII.Controllers
         }
 
 
-        public ActionResult Detali(int? id) //numai Maria stie ce ii aici 
+        public ActionResult Detalii(int? id) //numai Maria stie ce ii aici 
         {
             if (id == null)
             {

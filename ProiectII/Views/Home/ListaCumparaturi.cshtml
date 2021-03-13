@@ -2,32 +2,50 @@
 @{
     ViewBag.Title = "ListaCumparaturi";
 }
+<link rel="stylesheet" href="~/Content/ListaCumparaturi.css" />
 
-<h2>ListaCumparaturi</h2>
 
 <div>
-    <center>
+
         <form id="form1" runat="server">
 
-            <div>
-
+            <div class="grid-container">
                 @foreach (var item in Model)
-                {<!-- un fel de for pentru introducerea itemelor -->
+                {
+                <div class="grid-item">
+                    <table>
+                        <tr>
+                            <td>   <img class="imageClass" src="@Html.DisplayFor(modelItem => item.Image)" /></td>
+                        </tr>
+                        <tr>
+                            <td>  @Html.DisplayFor(modelItem => item.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>  @Html.DisplayFor(modelItem => item.Price)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="AClass">
+                                    @Html.ActionLink("Detalii", "Detalii", new { id = item.Id })
 
-                    <!--Class col-md-3 ii standar si se foloseste pentru a imparti in mai multe coloate-->
-                    <div class="col-md-3" style="margin-bottom:25px">
-                        <div>
-                            <!--De aici vine facut produsul-->
-                            @Html.DisplayFor(modelItem => item.Name)
-                            @Html.ActionLink("Detali", "Detali", new { id = item.Id })
-                        </div>
-                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                 
+                 
+                  
+           
+                </div>
+
                 }
-
             </div>
-        </form>
-    </center>
 
+
+
+
+        </form>
+
+ 
 
 </div>
-@TempData["buttonval1"]

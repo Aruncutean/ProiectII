@@ -3,25 +3,27 @@
     ViewBag.Title = "Home Page";
 }
 
+<link rel="stylesheet" href="~/Content/indexMy.css" />
 
 <div>
-   <form id="form1" runat="server">  
-        
-              <div>
-          
-                  <ul>
-                      @foreach (var item in Model)
-                      {<!-- un fel de for pentru introducerea itemelor -->
+    <form id="form1" runat="server">
 
-                      <li>
-                          @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ListaCumparaturi", new { id = item.Id })
-                      </li>
+        <div>
+            <div id="caseta_full_sus1">
+                
+                    @foreach (var item in Model)
+                    {<!-- un fel de for pentru introducerea itemelor -->
 
-                      }
-                  </ul>
-
-</div>
-        </form>
-    
+                    <div id="caseta_2">
+                       @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ListaCumparaturi", new { id = item.Id })
+                    </div>
+                            }
+                   
+            </div>
+        </div>
+</form>
+    <div id="image1">
+      
+    </div>
 
 </div>

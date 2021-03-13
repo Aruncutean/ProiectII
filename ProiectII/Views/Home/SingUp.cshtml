@@ -3,7 +3,9 @@
     ViewBag.Title = "UserCreate";
 }
 
-<h2>UserCreate</h2>
+<link rel="stylesheet" href="~/Content/Login.css" />
+
+
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
@@ -13,38 +15,32 @@
             };
     </script>
 }
-    <div>
-        <form action="SingUp" method="post">
-            <label>First Name</label>
-            <input type="text" name="FirstName" />
-    
-            <br />
-            <br />
-            <label>Last Name</label>
-            <input type="text" name="LastName" />
-            <br />
-            <br />
-            <label>Email</label>
-            <input type="text" name="Email" />
-            <br />
-            <br />
-            <label>Password</label>
-            <input type="text" name="Password1" />
-            <br />
-            <br />
-            <label>Re Password</label>
-            <input type="text" name="Password2" />
-            <br />
-            <br />
-            <label>Phone</label>
-            <input type="text" name="Phone" />
-            <br />
-            <br />
-            <input type="submit" name="" value="Sing Up" />
-        </form>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="SingUp" method="post">
+                        <h2>UserCreate</h2>
+                        <input type="text" name="FirstName" placeholder="First Name" />
 
-        <form action="Login" method="post">
+                       
+                        <input type="text" name="LastName" placeholder="Last Name" />
+                   
+                        <input type="text" name="Email" placeholder="Email" />
+                      
+                        <input type="password" name="Password1"  placeholder="Password"/>
+                      
+                        <input type="password" name="Password2"  placeholder="Password"/>
+                   
+                        <input type="text" name="Phone" placeholder="Phone" />
+                    
+                        <input type="submit" name="" value="Sing Up" />
+                    </form>
 
-            <input type="submit" name="" value="Login" />
-        </form>
+           
+                </div>
+            </div>
+        </div>
     </div>
+</div>

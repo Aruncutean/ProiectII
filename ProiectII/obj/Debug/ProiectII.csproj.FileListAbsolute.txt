@@ -76,10 +76,10 @@ C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\bin\System.Web.WebPages.Raz
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\bin\Newtonsoft.Json.xml
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\bin\Antlr3.Runtime.pdb
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csprojAssemblyReference.cache
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.Migrations.Initial.resources
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csproj.GenerateResource.cache
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csproj.CoreCompileInputs.cache
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csproj.CopyComplete
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.dll
 C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.pdb
+C:\Users\arunc\Desktop\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csprojAssemblyReference.cache

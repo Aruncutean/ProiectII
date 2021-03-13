@@ -3,26 +3,32 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+
+<link rel="stylesheet" href="~/Content/Login.css" />
 
 <div>
-    <form action="Login" method="post">
-        <label>Email</label>
-        <input type="text" name="Email   />
-     
-        <br />
-        <br />
-        <label>Password</label>
-        <input type="text" name="LastName" />
-        <br />
-        <br />
 
-        <input type="submit" name="" value="Login" />
-    </form>
-    <form action="SingUp" method="post">
-        <input type="submit" name="" value="Sing up" />
-    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="Login" method="post">
 
+                   
+                        <h2>Login</h2>
+                        <input type="text" name="Email" placeholder="Email" />
+
+
+                        <input type="password" name="Password" placeholder="Password" />
+
+
+                        <input type="submit" name="" value="Login" />
+                        <a>Creare cont nou: </a><br /><a href="@Url.Action("SingUp","Home")">Sign Up</a>
+                    </form>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@TempData["buttonval1"]
-@TempData["buttonval2"]
+         

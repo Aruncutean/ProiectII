@@ -1,0 +1,50 @@
+﻿body {
+}
+
+#caseta_full_sus1 {
+    float: left;
+    width: 384px;
+    height: 680px;
+    background: #2b3c53;
+}
+
+#caseta_2 {
+    float: left;
+    width: 384px;
+ height: 70px;
+ margin-top:50px;
+    background: #2b3c53;
+}
+
+    #caseta_2 a {
+        float: left;
+        width: 384px;
+        height: 70px;
+        font-size: 18px;
+        color: #FFFFFF;
+        text-align: centre;
+        text-decoration: none;
+        background-color: #2b3c53;
+        text-align: center;
+    }
+
+        #caseta_2 a:hover {
+            float: left;
+            height: 70px;
+            width: 384px;
+            font-size: 18px;
+            color: #FFFFFF;
+            text-align: centre;
+            text-decoration: none;
+            background-color: #f17259;
+            text-align: center;
+        }
+
+
+#image1 {
+    background-image:url(/Image/Untitled-2.png);
+    position: absolute;
+    margin-left: 384px;
+    width: 1150px;
+    height: 680px;
+}

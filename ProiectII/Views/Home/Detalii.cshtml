@@ -1,0 +1,59 @@
+﻿@model ProiectII.Models.Product
+
+@{
+    ViewBag.Title = "Detalii";
+}
+
+
+<link rel="stylesheet" href="~/Content/myDetalii.css" />
+
+<div>
+
+    <div id="divName">
+        <a>  @Html.DisplayFor(model => model.Name)</a>
+    </div>
+    <div id="DescriereT">
+        <table>
+            <tr>
+                <td>
+                    <img src="@Html.DisplayFor(model => model.Image)" />
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                    <div>
+                        <table class="tDereada">
+                            <tr>
+                                <td>
+                               Descriere:  @Html.DisplayFor(model => model.Description)
+                                </td>
+                            </tr> <br>
+                            <tr>
+                                <td>
+                               Pret:  @Html.DisplayFor(model => model.Price)
+                                </td>
+                            </tr> <br>
+                            <tr>
+                                <td>
+                                Stoc:   @Html.DisplayFor(model => model.Stock)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+
+</table>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
