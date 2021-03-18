@@ -221,6 +221,8 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Detalii.cshtml" />
     <Content Include="Views\Home\ListaCumparaturi.cshtml" />
+    <Content Include="Views\Home\CosCumparaturi.cshtml" />
+    <Content Include="Views\Home\Este.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ProiectII.Models.User>
 @{
     ViewBag.Title = "Login";
 }
@@ -14,7 +14,7 @@
                 <div class="card">
                     <form class="box" action="Login" method="post">
 
-                   
+
                         <h2>Login</h2>
                         <input type="text" name="Email" placeholder="Email" />
 
@@ -22,13 +22,14 @@
                         <input type="password" name="Password" placeholder="Password" />
 
 
-                        <input type="submit" name="" value="Login" />
+                           <input type="submit" name="" value="Login" />
+                
                         <a>Creare cont nou: </a><br /><a href="@Url.Action("SingUp","Home")">Sign Up</a>
                     </form>
-                 
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-         
+@TempData["buttonval1"]

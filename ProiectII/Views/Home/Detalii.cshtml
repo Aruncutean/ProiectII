@@ -26,17 +26,27 @@
                         <table class="tDereada">
                             <tr>
                                 <td>
-                               Descriere:  @Html.DisplayFor(model => model.Description)
+                                    Descriere:  @Html.DisplayFor(model => model.Description)
                                 </td>
-                            </tr> <br>
+                            </tr>
+                            <br>
                             <tr>
                                 <td>
-                               Pret:  @Html.DisplayFor(model => model.Price)
+                                    Pret:  @Html.DisplayFor(model => model.Price)
                                 </td>
-                            </tr> <br>
+                            </tr>
+                            <br>
                             <tr>
                                 <td>
-                                Stoc:   @Html.DisplayFor(model => model.Stock)
+                                    Stoc:   @Html.DisplayFor(model => model.Stock)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                   
+                                        @Html.DisplayFor(model => model.Id)
+                                        <input type="submit" name="" value="Cumpara"onclick="location.href='@Url.Action(" AddProdusCos","Home",    @Html.DisplayFor(model => model.Id))'" />
+                                    
                                 </td>
                             </tr>
                         </table>

@@ -12,6 +12,8 @@ namespace ProiectII.Controllers
     {
         private ShopDBContext db = new ShopDBContext();
         private User user = new Models.User();
+
+        private User userLogin = null;
         public ActionResult Index()
         {
 
@@ -108,13 +110,21 @@ namespace ProiectII.Controllers
             if (ModelState.IsValid)
             {
 
-                var data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(password));
+                List<User> data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(password)).ToList();
 
                 if (data.Count() > 0)
                 {
+                    foreach (User u in data)
+                    {
+                        userLogin = new User();
+                        userLogin.Email = u.Email;
+                        userLogin.FirstName = u.FirstName;
+                        userLogin.LastName = u.LastName;
+                    }
 
+
+                    TempData["buttonval1"] = userLogin.FirstName;
                     return RedirectToAction("Index");
-
                 }
                 else
                 {
@@ -127,7 +137,7 @@ namespace ProiectII.Controllers
             return View();
         }
 
-
+        Product product;
         public ActionResult Detalii(int? id) //numai Maria stie ce ii aici 
         {
             if (id == null)
@@ -142,8 +152,37 @@ namespace ProiectII.Controllers
             return View(product);
         }
 
+        public ActionResult AddProdusCos(int? id)
+        {
 
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = db.Products.Find(id);
+            OrderItem order = new OrderItem();
+            
+            db.OrderItems.Add(order);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
 
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult CosCumparaturi(int? id)
+        {
+
+            return View();
+        }
+
+        public ActionResult Deconectare()
+        {
+
+            return RedirectToAction("Index");
+        }
 
 
     }
