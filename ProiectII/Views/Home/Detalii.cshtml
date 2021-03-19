@@ -1,5 +1,4 @@
-﻿@model ProiectII.Models.Product
-
+﻿@model ProiectII.Models.MyModel
 @{
     ViewBag.Title = "Detalii";
 }
@@ -10,60 +9,57 @@
 <div>
 
     <div id="divName">
-        <a>  @Html.DisplayFor(model => model.Name)</a>
+        <a>  @Html.DisplayFor(model => model.product.Name)</a>
     </div>
     <div id="DescriereT">
         <table>
             <tr>
                 <td>
-                    <img src="@Html.DisplayFor(model => model.Image)" />
+                    <img src="@Html.DisplayFor(model => model.product.Image)" />
                 </td>
                 <td>
-                  
                 </td>
                 <td>
                     <div>
                         <table class="tDereada">
                             <tr>
                                 <td>
-                                    Descriere:  @Html.DisplayFor(model => model.Description)
+                                    Descriere:  @Html.DisplayFor(model => model.product.Description)
                                 </td>
                             </tr>
                             <br>
                             <tr>
                                 <td>
-                                    Pret:  @Html.DisplayFor(model => model.Price)
+                                    Pret:  @Html.DisplayFor(model => model.product.Price)
                                 </td>
                             </tr>
                             <br>
+
                             <tr>
                                 <td>
-                                    Stoc:   @Html.DisplayFor(model => model.Stock)
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                   
-                                        @Html.DisplayFor(model => model.Id)
-                                        <input type="submit" name="" value="Cumpara"onclick="location.href='@Url.Action(" AddProdusCos","Home",    @Html.DisplayFor(model => model.Id))'" />
-                                    
+
+                                    @Html.DisplayFor(model => model.product.Id)
+                                    <input type="submit" name="" value="Cumpara" onclick="location.href='@Url.Action("AddProdusCos","Home", new { id = (Model.product.Id) })'" />
+                              
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
 
-</table>
+        </table>
     </div>
 </div>
 
 
 
 
-
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
     </div>
-
-
-
-</div>
-
+}

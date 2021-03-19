@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\MyModel.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Product.cs" />
@@ -158,6 +159,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CosCumparaturi.css" />
     <Content Include="Content\indexMy.css" />
     <Content Include="Content\ListaCumparaturi.css" />
     <Content Include="Content\Login.css" />
@@ -228,6 +230,8 @@
     <Content Include="Views\Home\ListaCumparaturi.cshtml" />
     <Content Include="Views\Home\CosCumparaturi.cshtml" />
     <Content Include="Views\Home\Este.cshtml" />
+    <Content Include="Views\Home\AddProduse.cshtml" />
+    <Content Include="Views\Home\RemoveProduse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

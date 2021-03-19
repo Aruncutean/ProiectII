@@ -12,34 +12,50 @@ namespace ProiectII.Controllers
     {
         private ShopDBContext db = new ShopDBContext();
         private User user = new Models.User();
-
-        private User userLogin = null;
+        private static List<Product> cosCumparaturi = null;
+        private static User userLogin;
+        private Boolean conectat = false;
+        private MyModel myModel = new MyModel();
+      
         public ActionResult Index()
         {
 
-            return View(db.Categories.ToList());
+            LoginUsers();
+       
+    
+          
+            myModel.categories = db.Categories.ToList();
+
+            return View(myModel);
         }
+
 
 
         public ActionResult ListaCumparaturi(int? id)
         {
+            LoginUsers();
             if (id != null)
             {
                 List<Product> product = db.Products.Where(s => s.Category.Id == id).ToList();
 
-                return View(product);
+                myModel.products = product;
+
+                return View(myModel);
 
             }
             else
-                return View(db.Products.ToList());
+            {
+                myModel.products = db.Products.ToList();
+                return View(myModel);
+            }
         }
-
 
 
 
         public ActionResult SingUp(string FirstName, string LastName, string Email, string Password1,
             string Password2, string Phone)
         {
+            LoginUsers();
 
             if (FirstName != null)
             {
@@ -51,6 +67,7 @@ namespace ProiectII.Controllers
                     user.Email = Email;
                     user.Password = Password1;
                     user.Phone = Phone;
+                    user.Role = Roles.Client;
 
                     if (!Password1.Equals(Password2))
                     {
@@ -85,8 +102,8 @@ namespace ProiectII.Controllers
                         {
                             db.Configuration.ValidateOnSaveEnabled = false;
 
-                             db.Users.Add(user);
-                             db.SaveChanges();
+                            db.Users.Add(user);
+                            db.SaveChanges();
                             return RedirectToAction("Index");
 
                         }
@@ -98,7 +115,7 @@ namespace ProiectII.Controllers
                     }
                 }
             }
-            return View();
+            return View(myModel);
 
 
 
@@ -106,7 +123,7 @@ namespace ProiectII.Controllers
 
         public ActionResult Login(String Email, string password)
         {
-
+            LoginUsers();
             if (ModelState.IsValid)
             {
 
@@ -120,26 +137,31 @@ namespace ProiectII.Controllers
                         userLogin.Email = u.Email;
                         userLogin.FirstName = u.FirstName;
                         userLogin.LastName = u.LastName;
+                        userLogin.Role = u.Role;
+
                     }
-
-
-                    TempData["buttonval1"] = userLogin.FirstName;
+                    conectat = true;
+                    LoginUsers();
                     return RedirectToAction("Index");
+
+
+                    // return RedirectToAction("Index");
                 }
                 else
                 {
                     TempData["buttonval1"] = Email;
                     TempData["buttonval2"] = password;
-                    return View();
+                    return View(myModel);
                 }
 
             }
-            return View();
+            return View(myModel);
         }
 
-        Product product;
+
         public ActionResult Detalii(int? id) //numai Maria stie ce ii aici 
         {
+            LoginUsers();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -149,24 +171,33 @@ namespace ProiectII.Controllers
             {
                 return HttpNotFound();
             }
-            return View(product);
+            myModel.product = product;
+            return View(myModel);
         }
 
         public ActionResult AddProdusCos(int? id)
         {
-
+            if(cosCumparaturi==null)
+            {
+                cosCumparaturi = new List<Product>();
+            }
+            LoginUsers();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
-            OrderItem order = new OrderItem();
+        
+                Product product = db.Products.Find(id);
+                
             
-            db.OrderItems.Add(order);
             if (product == null)
             {
                 return HttpNotFound();
             }
+            else{
+                cosCumparaturi.Add(product);
+            }
+
 
             return RedirectToAction("Index");
 
@@ -174,16 +205,93 @@ namespace ProiectII.Controllers
 
         public ActionResult CosCumparaturi(int? id)
         {
+            if(cosCumparaturi==null)
+            {
+                cosCumparaturi = new List<Product>();
+               
 
-            return View();
+            }
+            LoginUsers();
+           decimal pret=0;
+            for(int i=0;i<cosCumparaturi.Count;i++)
+            {
+                pret += cosCumparaturi[i].Price;
+            }
+            myModel.price = pret;
+            myModel.products = cosCumparaturi;
+            return View(myModel);
         }
 
         public ActionResult Deconectare()
         {
-
+            userLogin = null;
+            cosCumparaturi = null;
+            LoginUsers();
             return RedirectToAction("Index");
         }
 
 
+        public ActionResult Cumpara()
+        {
+            LoginUsers();
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult RemoveProduse()
+        {
+            LoginUsers();
+            myModel.products = db.Products.ToList();
+            return View(myModel);
+        }
+
+
+
+        public ActionResult AddProduse()
+        {
+            LoginUsers();
+           return View(myModel);
+        }
+
+        public void LoginUsers()
+        {
+            MyModel.UserMY nume = new MyModel.UserMY();
+          
+            MyModel.UserMY rapoarte = new MyModel.UserMY();
+            rapoarte.name = "Rapoarte";
+            rapoarte.page = "Index";
+
+            MyModel.UserMY AddProdus = new MyModel.UserMY();
+            AddProdus.name = "Add Produs";
+            AddProdus.page = "AddProduse";
+
+
+            MyModel.UserMY RemoveProdus = new MyModel.UserMY();
+            RemoveProdus.name = "Remove Produs";
+            RemoveProdus.page = "RemoveProduse";
+            List<MyModel.UserMY> l = new List<MyModel.UserMY>();
+
+
+            if (userLogin == null)
+            {
+                nume.name = "Nu esti logat!";
+                nume.page = "Index";
+                l.Add(nume);
+            }
+            else
+            {
+                nume.name = userLogin.FirstName;
+                nume.page = "Index";
+                l.Add(nume);
+                if (userLogin.Role == 0)
+                {
+                    l.Add(rapoarte);
+                    l.Add(AddProdus);
+                    l.Add(RemoveProdus);
+                }
+            }
+            
+            myModel.user = l;
+        }
     }
 }

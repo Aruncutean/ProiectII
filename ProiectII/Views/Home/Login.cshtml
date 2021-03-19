@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProiectII.Models.User>
+﻿@model ProiectII.Models.MyModel
 @{
     ViewBag.Title = "Login";
 }
@@ -22,8 +22,8 @@
                         <input type="password" name="Password" placeholder="Password" />
 
 
-                           <input type="submit" name="" value="Login" />
-                
+                        <input type="submit" name="" value="Login" />
+
                         <a>Creare cont nou: </a><br /><a href="@Url.Action("SingUp","Home")">Sign Up</a>
                     </form>
 
@@ -33,3 +33,13 @@
     </div>
 </div>
 @TempData["buttonval1"]
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}

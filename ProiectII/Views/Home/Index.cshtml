@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProiectII.Models.Category>
+﻿@model ProiectII.Models.MyModel
+    
 @{
     ViewBag.Title = "Home Page";
 }
@@ -11,19 +12,29 @@
         <div>
             <div id="caseta_full_sus1">
                 
-                    @foreach (var item in Model)
-                    {<!-- un fel de for pentru introducerea itemelor -->
+                @foreach (var item in Model.categories)
+                {<!-- un fel de for pentru introducerea itemelor -->
 
                     <div id="caseta_2">
-                       @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ListaCumparaturi", new { id = item.Id })
+                        @Html.ActionLink(@Html.DisplayFor(modelItem => item.Name).ToString(), "ListaCumparaturi", new { id = item.Id })
                     </div>
-                            }
-                   
+                }
+
             </div>
         </div>
-</form>
+    </form>
     <div id="image1">
-      
+
     </div>
 
 </div>
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}

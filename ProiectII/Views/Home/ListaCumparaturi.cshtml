@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProiectII.Models.Product>
+﻿@model ProiectII.Models.MyModel
+
 @{
     ViewBag.Title = "ListaCumparaturi";
 }
@@ -7,11 +8,11 @@
 
 <div>
 
-        <form id="form1" runat="server">
+    <form id="form1" runat="server">
 
-            <div class="grid-container">
-                @foreach (var item in Model)
-                {
+        <div class="grid-container">
+            @foreach (var item in Model.products)
+            {
                 <div class="grid-item">
                     <table>
                         <tr>
@@ -32,20 +33,29 @@
                             </td>
                         </tr>
                     </table>
-                 
-                 
-                  
-           
+
+
+
+
                 </div>
 
-                }
-            </div>
+            }
+        </div>
 
 
 
 
-        </form>
+    </form>
 
- 
 
 </div>
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}

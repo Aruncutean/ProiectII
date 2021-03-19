@@ -168,3 +168,4 @@ C:\Users\arunc\Desktop\II\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.cspr
 C:\Users\arunc\Desktop\II\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.dll
 C:\Users\arunc\Desktop\II\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.pdb
 C:\Users\arunc\Desktop\II\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.csprojAssemblyReference.cache
+C:\Users\arunc\Desktop\II\iiProiect\ProiectII\ProiectII\obj\Debug\ProiectII.Migrations.AddedStockModel.resources

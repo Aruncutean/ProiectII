@@ -1,0 +1,64 @@
+﻿@model ProiectII.Models.MyModel
+@{
+    ViewBag.Title = "RemoveProduse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>RemoveProduse</h2>
+
+<link rel="stylesheet" href="~/Content/ListaCumparaturi.css" />
+
+
+<div>
+
+    <form id="form1" runat="server">
+
+        <div class="grid-container">
+            @foreach (var item in Model.products)
+            {
+                <div class="grid-item">
+                    <table>
+                        <tr>
+                            <td>   <img class="imageClass" src="@Html.DisplayFor(modelItem => item.Image)" /></td>
+                        </tr>
+                        <tr>
+                            <td>  @Html.DisplayFor(modelItem => item.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>  @Html.DisplayFor(modelItem => item.Price)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="AClass">
+                                    @Html.ActionLink("Detalii", "Detalii", new { id = item.Id })
+
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                </div>
+
+            }
+        </div>
+
+
+
+
+    </form>
+
+
+</div>
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}

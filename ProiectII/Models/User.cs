@@ -6,12 +6,13 @@ using System.Data.Entity;
 namespace ProiectII.Models
 {
     public enum Roles
-    { 
-        Admin,
-        Client
+    {
+        Admin = 0,
+        Client = 1
     }
     public class User
     {
+      
         public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }

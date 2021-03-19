@@ -1,0 +1,40 @@
+﻿@model ProiectII.Models.MyModel
+@{
+    ViewBag.Title = "AddProduse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/Login.css" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <form class="box" action="Login" method="post">
+
+                    <h2>Add Produse</h2>
+
+                    <input type="text" name="Email" placeholder="Name" />
+                    <input type="text" name="Password" placeholder="Descriere" />
+                    <input type="text" name="Email" placeholder="Image URL" />
+                    <input type="text" name="Password" placeholder="Pret" /> 
+                    <input type="text" name="Email" placeholder="Cod Categorie" />
+                    <input type="submit" name="" value="Add produse">
+
+                   
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}
