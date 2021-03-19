@@ -1,9 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace ProiectII.Models
 {
+    public enum Roles
+    { 
+        Admin,
+        Client
+    }
     public class User
     {
         public int Id { get; set; }
@@ -23,6 +29,8 @@ namespace ProiectII.Models
 
         [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
+        [Required]
+        public Roles Role { get; set; }
     }
 
 }

@@ -9,6 +9,10 @@ namespace ProiectII.Models
     {
         public int Id { get; set; }
         [Required]
+        [StringLength(10)]
+        [Index(IsUnique = true)] //sa nu fie de 2 ori acelasi cod de produs
+        public string Code { get; set; } //cod unic de identificare
+        [Required]
         [StringLength(60, MinimumLength = 3)]
         public string Name { get; set; }
         [Required]
@@ -18,8 +22,6 @@ namespace ProiectII.Models
         [Required]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-        [Required]
-        public int Stock { get; set; }
         public virtual Category Category { get; set; } 
     }
 
@@ -30,6 +32,7 @@ namespace ProiectII.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
     }
 }

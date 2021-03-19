@@ -139,11 +139,16 @@
     <Compile Include="Migrations\202103091107195_Initial.Designer.cs">
       <DependentUpon>202103091107195_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103190955262_Added Stock Model.cs" />
+    <Compile Include="Migrations\202103190955262_Added Stock Model.Designer.cs">
+      <DependentUpon>202103190955262_Added Stock Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Stock.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -241,6 +246,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103091107195_Initial.resx">
       <DependentUpon>202103091107195_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103190955262_Added Stock Model.resx">
+      <DependentUpon>202103190955262_Added Stock Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
