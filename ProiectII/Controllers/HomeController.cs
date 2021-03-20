@@ -138,7 +138,8 @@ namespace ProiectII.Controllers
                         userLogin.FirstName = u.FirstName;
                         userLogin.LastName = u.LastName;
                         userLogin.Role = u.Role;
-
+                        userLogin.Id = u.Id;
+                        
                     }
                     conectat = true;
                     LoginUsers();
@@ -234,6 +235,19 @@ namespace ProiectII.Controllers
         public ActionResult Cumpara()
         {
             LoginUsers();
+
+            if(cosCumparaturi!=null)
+            {
+                Order order = new Order();
+                order.Amount = cosCumparaturi.Count;
+                // order.Id = userLogin.Id;
+      //          order.User = userLogin;
+                order.Date = DateTime.Now ;
+
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
