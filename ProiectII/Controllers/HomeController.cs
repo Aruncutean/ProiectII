@@ -16,14 +16,14 @@ namespace ProiectII.Controllers
         private static User userLogin;
         private Boolean conectat = false;
         private MyModel myModel = new MyModel();
-      
+
         public ActionResult Index()
         {
 
             LoginUsers();
-       
-    
-          
+
+
+
             myModel.categories = db.Categories.ToList();
 
             return View(myModel);
@@ -127,26 +127,14 @@ namespace ProiectII.Controllers
             if (ModelState.IsValid)
             {
 
-                List<User> data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(password)).ToList();
+                User data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(password)).FirstOrDefault() ;
 
-                if (data.Count() > 0)
+                if (data!=null)
                 {
-                    foreach (User u in data)
-                    {
-                        userLogin = new User();
-                        userLogin.Email = u.Email;
-                        userLogin.FirstName = u.FirstName;
-                        userLogin.LastName = u.LastName;
-                        userLogin.Role = u.Role;
-                        userLogin.Id = u.Id;
-                        
-                    }
+                    userLogin = data;
                     conectat = true;
                     LoginUsers();
                     return RedirectToAction("Index");
-
-
-                    // return RedirectToAction("Index");
                 }
                 else
                 {
@@ -178,7 +166,7 @@ namespace ProiectII.Controllers
 
         public ActionResult AddProdusCos(int? id)
         {
-            if(cosCumparaturi==null)
+            if (cosCumparaturi == null)
             {
                 cosCumparaturi = new List<Product>();
             }
@@ -187,15 +175,16 @@ namespace ProiectII.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-        
-                Product product = db.Products.Find(id);
-                
-            
+
+            Product product = db.Products.Find(id);
+
+
             if (product == null)
             {
                 return HttpNotFound();
             }
-            else{
+            else
+            {
                 cosCumparaturi.Add(product);
             }
 
@@ -206,15 +195,15 @@ namespace ProiectII.Controllers
 
         public ActionResult CosCumparaturi(int? id)
         {
-            if(cosCumparaturi==null)
+            if (cosCumparaturi == null)
             {
                 cosCumparaturi = new List<Product>();
-               
+
 
             }
             LoginUsers();
-           decimal pret=0;
-            for(int i=0;i<cosCumparaturi.Count;i++)
+            decimal pret = 0;
+            for (int i = 0; i < cosCumparaturi.Count; i++)
             {
                 pret += cosCumparaturi[i].Price;
             }
@@ -236,16 +225,29 @@ namespace ProiectII.Controllers
         {
             LoginUsers();
 
-            if(cosCumparaturi!=null)
+            if (cosCumparaturi != null)
             {
                 Order order = new Order();
                 order.Amount = cosCumparaturi.Count;
-                // order.Id = userLogin.Id;
-      //          order.User = userLogin;
-                order.Date = DateTime.Now ;
+                order.User = userLogin;
+                order.Date = DateTime.Now;
 
                 db.Orders.Add(order);
                 db.SaveChanges();
+
+
+                for (int i = 0; i < cosCumparaturi.Count; i++)
+                {
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.Price = (double)cosCumparaturi[i].Price;
+                    orderItem.Product = cosCumparaturi[i];
+                    
+                    orderItem.Quantity = 1;
+                    db.OrderItems.Add(orderItem);
+                    db.SaveChanges();
+
+                }
+
             }
 
             return RedirectToAction("Index");
@@ -264,13 +266,13 @@ namespace ProiectII.Controllers
         public ActionResult AddProduse()
         {
             LoginUsers();
-           return View(myModel);
+            return View(myModel);
         }
 
         public void LoginUsers()
         {
             MyModel.UserMY nume = new MyModel.UserMY();
-          
+
             MyModel.UserMY rapoarte = new MyModel.UserMY();
             rapoarte.name = "Rapoarte";
             rapoarte.page = "Index";
@@ -304,7 +306,7 @@ namespace ProiectII.Controllers
                     l.Add(RemoveProdus);
                 }
             }
-            
+
             myModel.user = l;
         }
     }
