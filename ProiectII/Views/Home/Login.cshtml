@@ -3,28 +3,43 @@
     ViewBag.Title = "Login";
 }
 
+<script>
+    function myFunction() {
 
+        $("#email").on("input", function (evt) {
+            if (evt.target.value.length > 50) {
+                evt.target.setCustomValidity("Email too long!!!");
+                $("#shorterrormsg").show();
+                $("#longerrormsg").html("Email too long!!!");
+            } else {
+                evt.target.setCustomValidity("");
+                $("#shorterrormsg").hide();
+                $("#longerrormsg").html("");
+            }
+        });
+    }
+</script>
 <link rel="stylesheet" href="~/Content/Login.css" />
 
 <div>
-
+    @TempData["buttonval1"]
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
+
                     <form class="box" action="Login" method="post">
 
 
-                        <h2>Login</h2>
-                        <input type="text" name="Email" placeholder="Email" />
+                        <h>Login</h>
+                        <input type="email" name="Email" placeholder="Email" required onmouseover="myFunction()" />
 
 
-                        <input type="password" name="Password" placeholder="Password" />
-
+                        <input type="password" name="Password" placeholder="Password" required onmouseover="myFunction()" />
 
                         <input type="submit" name="" value="Login" />
 
-                        <a>Creare cont nou: </a><br /><a href="@Url.Action("SingUp","Home")">Sign Up</a>
+                        <a>Creare cont nou: </a><br /><a href="@Url.Action("SingUp", "Home")">Sign Up</a>
                     </form>
 
                 </div>
@@ -32,7 +47,6 @@
         </div>
     </div>
 </div>
-@TempData["buttonval1"]
 
 @section Re{
     <div>

@@ -5,16 +5,23 @@
 
 <link rel="stylesheet" href="~/Content/Login.css" />
 
+<script>
+    function myFunction() {
 
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
+        $("#email").on("input", function (evt) {
+            if (evt.target.value.length > 50) {
+                evt.target.setCustomValidity("Email too long!!!");
+                $("#shorterrormsg").show();
+                $("#longerrormsg").html("Email too long!!!");
+            } else {
+                evt.target.setCustomValidity("");
+                $("#shorterrormsg").hide();
+                $("#longerrormsg").html("");
+            }
+        });
+    }
+</script>
 
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
-}
 <div>
     <div class="container">
         <div class="row">
@@ -22,18 +29,18 @@
                 <div class="card">
                     <form class="box" action="SingUp" method="post">
                         <h2>UserCreate</h2>
-                        <input type="text" name="FirstName" placeholder="First Name" />
+                        <input type="text" name="FirstName" placeholder="First Name"  required onmouseover="myFunction()"/>
 
 
-                        <input type="text" name="LastName" placeholder="Last Name" />
+                        <input type="text" name="LastName" placeholder="Last Name" required onmouseover="myFunction()" />
 
-                        <input type="text" name="Email" placeholder="Email" />
+                        <input type="email" name="Email" placeholder="Email" required onmouseover="myFunction()"/>
 
-                        <input type="password" name="Password1" placeholder="Password" />
+                        <input type="password" name="Password1" placeholder="Password" required onmouseover="myFunction()"/>
 
-                        <input type="password" name="Password2" placeholder="Password" />
+                        <input type="password" name="Password2" placeholder="Password" required onmouseover="myFunction()"/>
 
-                        <input type="text" name="Phone" placeholder="Phone" />
+                        <input type="tel" name="Phone" placeholder="Phone" required onmouseover="myFunction()"/>
 
                         <input type="submit" name="" value="Sing Up" />
                     </form>

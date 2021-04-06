@@ -69,34 +69,7 @@ namespace ProiectII.Controllers
                     user.Phone = Phone;
                     user.Role = Roles.Client;
 
-                    if (!Password1.Equals(Password2))
-                    {
-                        ViewBag.Message = "Password";
-                        // return View("SingUp",user);
-                    }
-                    else if (Email.Equals(""))
-                    {
-                        ViewBag.Message = "Completeaza email";
-                        // return View("SingUp",user);
-                    }
-
-                    else if (FirstName.Equals(""))
-                    {
-                        ViewBag.Message = "Completeaza Firs Name";
-                        // return View("SingUp", user);
-                    }
-                    else if (LastName.Equals(""))
-                    {
-                        ViewBag.Message = "Completeaza Last Name";
-                        // return View("SingUp", user);
-                    }
-                    else if (Phone.Equals(""))
-                    {
-                        ViewBag.Message = "Completeaza Phone";
-                        // return View("SingUp", user);
-                    }
-                    else
-                    {
+                    
                         var check = db.Users.FirstOrDefault(s => s.Email == Email);
                         if (check == null)
                         {
@@ -112,7 +85,7 @@ namespace ProiectII.Controllers
                             ViewBag.Message = "Email already exists";
 
                         }
-                    }
+                    
                 }
             }
             return View(myModel);
@@ -121,13 +94,13 @@ namespace ProiectII.Controllers
 
         }
 
-        public ActionResult Login(String Email, string password)
+        public ActionResult Login(string Email, string Password)
         {
             LoginUsers();
             if (ModelState.IsValid)
             {
 
-                User data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(password)).FirstOrDefault() ;
+                User data = db.Users.Where(s => s.Email.Equals(Email) && s.Password.Equals(Password)).FirstOrDefault() ;
 
                 if (data!=null)
                 {
@@ -139,7 +112,7 @@ namespace ProiectII.Controllers
                 else
                 {
                     TempData["buttonval1"] = Email;
-                    TempData["buttonval2"] = password;
+                    TempData["buttonval2"] = Password;
                     return View(myModel);
                 }
 
@@ -257,10 +230,21 @@ namespace ProiectII.Controllers
         public ActionResult RemoveProduse()
         {
             LoginUsers();
+
             myModel.products = db.Products.ToList();
             return View(myModel);
         }
 
+      
+        public ActionResult Remove(int ?id)
+        {
+            LoginUsers();
+            Product product=db.Products.Find(id);
+            db.Products.Remove(product);
+           
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
 
         public ActionResult AddProduse()
