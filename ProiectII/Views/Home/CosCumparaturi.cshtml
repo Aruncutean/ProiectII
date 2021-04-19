@@ -4,7 +4,7 @@
     ViewBag.Title = "CosCumparaturi";
 }
 
-<h2>Cosul meu</h2>
+<h2 style="text-align:center;">Cosul meu</h2>
 <link rel="stylesheet" href="~/Content/CosCumparaturi.css" />
 <div class="grid-container">
 
@@ -47,7 +47,7 @@
     <form class="box" action="Cumpara" method="post">
         <table>
             <tr>  Pret total: $ @Html.DisplayFor(modelItem => Model.price)</tr>
-            <tr> <input type="submit" name="" value="Cumpara" /></tr>
+            <tr> <input id="button1" type="submit" name="" value="Cumpara" /></tr>
            
         </table>
     </form>

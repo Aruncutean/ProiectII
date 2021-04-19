@@ -6,24 +6,35 @@
 <link rel="stylesheet" href="~/Content/Login.css" />
 
 
+<script>
+    function myFunction() {
+
+        $('#text').on("input", function (evt) {
+            if (evt.target.value.length > 4) {
+                evt.target.setCustomValidity("Email too long!!!");
+                $("#shorterrormsg").show();
+                $("#longerrormsg").html("Email too long!!!");
+            } else {
+                evt.target.setCustomValidity("");
+                $("#shorterrormsg").hide();
+                $("#longerrormsg").html("");
+            }
+        });
+    }
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <form class="box" action="Login" method="post">
-
+                <form class="box" action="AddProduct" method="post">
                     <h2>Add Produse</h2>
-
-                    <input type="text" name="Email" placeholder="Name" />
-                    <input type="text" name="Password" placeholder="Descriere" />
-                    <input type="text" name="Email" placeholder="Image URL" />
-                    <input type="text" name="Password" placeholder="Pret" /> 
-                    <input type="text" name="Email" placeholder="Cod Categorie" />
+                    <input type="text" name="Name" placeholder="Name" required onmouseover="myFunction()"/>
+                    <input type="text" name="Descriere" placeholder="Descriere" required onmouseover="myFunction()"/>
+                    <input type="text" name="ImageURL" placeholder="Image URL" required onmouseover="myFunction()"/>
+                    <input type="text" name="Pret" placeholder="Pret" required onmouseover="myFunction()"/>
+                    <input type="text" name="CodCategorie" placeholder="Cod Categorie" required onmouseover="myFunction()"/>
                     <input type="submit" name="" value="Add produse">
-
-                   
                 </form>
-
             </div>
         </div>
     </div>

@@ -212,14 +212,15 @@ namespace ProiectII.Controllers
                 for (int i = 0; i < cosCumparaturi.Count; i++)
                 {
                     OrderItem orderItem = new OrderItem();
-                    orderItem.Price = (double)cosCumparaturi[i].Price;
-                    orderItem.Product = cosCumparaturi[i];
-                    
+                    orderItem.Price = (double)db.Products.Find(cosCumparaturi[i].Id).Price;
+                    orderItem.Product = db.Products.Find(cosCumparaturi[i].Id);
+                    orderItem.Order = order;
                     orderItem.Quantity = 1;
                     db.OrderItems.Add(orderItem);
                     db.SaveChanges();
 
                 }
+                cosCumparaturi = null;
 
             }
 
@@ -227,7 +228,7 @@ namespace ProiectII.Controllers
         }
 
 
-        public ActionResult RemoveProduse()
+        public ActionResult ARProduse()
         {
             LoginUsers();
 
@@ -235,21 +236,96 @@ namespace ProiectII.Controllers
             return View(myModel);
         }
 
-      
-        public ActionResult Remove(int ?id)
+  
+        public ActionResult Delete(int ?id)
         {
             LoginUsers();
-            Product product=db.Products.Find(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            myModel.product = db.Products.Find(id);
+       
+            return View(myModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Product product = db.Products.Find(id);
             db.Products.Remove(product);
-           
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-
         public ActionResult AddProduse()
         {
             LoginUsers();
+            return View(myModel);
+        }
+        public ActionResult AddProduct(string Name, string Descriere, string ImageURL, string Pret, string CodCategorie)
+        {
+            LoginUsers();
+            if (ModelState.IsValid)
+            {
+
+                Product product = new Product();
+   
+                product.Name = Name;
+                product.Category = db.Categories.Find(1);
+                product.Description = Descriere;
+                product.Image = ImageURL;
+                product.Price = Convert.ToInt32(Pret);
+                product.Code = CodCategorie;
+                if (ModelState.IsValid)
+                {
+                    if (product != null)
+                    {
+                        db.Products.Add(product);
+                        db.SaveChanges();
+                        LoginUsers();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View(myModel);
+                    }
+                }
+            }
+            return View(myModel);
+        }
+
+             [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Description,Image,Price")] Product product)
+        {
+            LoginUsers();
+            if (ModelState.IsValid)
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+
+
+        public ActionResult Rapoarte()
+        {
+            LoginUsers();
+            myModel.orders = db.Orders.ToList();
+
+            return View(myModel);
+        }
+
+        public ActionResult DetaliR(int? id)
+        {
+            LoginUsers();
+
+            myModel.orderItems=db.OrderItems.Where(s => s.Order.Id == id).ToList();
             return View(myModel);
         }
 
@@ -259,16 +335,13 @@ namespace ProiectII.Controllers
 
             MyModel.UserMY rapoarte = new MyModel.UserMY();
             rapoarte.name = "Rapoarte";
-            rapoarte.page = "Index";
+            rapoarte.page = "Rapoarte";
 
-            MyModel.UserMY AddProdus = new MyModel.UserMY();
-            AddProdus.name = "Add Produs";
-            AddProdus.page = "AddProduse";
+            MyModel.UserMY AddRemoveProdus = new MyModel.UserMY();
+            AddRemoveProdus.name = "Add/Remove";
+            AddRemoveProdus.page = "ARProduse";
 
 
-            MyModel.UserMY RemoveProdus = new MyModel.UserMY();
-            RemoveProdus.name = "Remove Produs";
-            RemoveProdus.page = "RemoveProduse";
             List<MyModel.UserMY> l = new List<MyModel.UserMY>();
 
 
@@ -286,8 +359,8 @@ namespace ProiectII.Controllers
                 if (userLogin.Role == 0)
                 {
                     l.Add(rapoarte);
-                    l.Add(AddProdus);
-                    l.Add(RemoveProdus);
+                    l.Add(AddRemoveProdus);
+           
                 }
             }
 

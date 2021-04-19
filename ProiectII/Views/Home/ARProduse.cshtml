@@ -1,0 +1,56 @@
+﻿@model ProiectII.Models.MyModel
+@{
+    ViewBag.Title = "ARProduse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/tabel.css" />
+<div>
+    <table id="customers">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.product.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product.Name)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.product.Price)
+            </th>
+            <th >
+                @Html.ActionLink("Create New", "AddProduse")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.products)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="T">
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}

@@ -130,6 +130,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderItemsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\Products1Controller.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -160,11 +161,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CosCumparaturi.css" />
+    <Content Include="Content\Delete.css" />
     <Content Include="Content\indexMy.css" />
     <Content Include="Content\ListaCumparaturi.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\myDetalii.css" />
     <Content Include="Content\myMeniu.css" />
+    <Content Include="Content\tabel.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -229,9 +232,16 @@
     <Content Include="Views\Home\Detalii.cshtml" />
     <Content Include="Views\Home\ListaCumparaturi.cshtml" />
     <Content Include="Views\Home\CosCumparaturi.cshtml" />
-    <Content Include="Views\Home\Este.cshtml" />
     <Content Include="Views\Home\AddProduse.cshtml" />
-    <Content Include="Views\Home\RemoveProduse.cshtml" />
+    <Content Include="Views\Products1\Create.cshtml" />
+    <Content Include="Views\Products1\Delete.cshtml" />
+    <Content Include="Views\Products1\Details.cshtml" />
+    <Content Include="Views\Products1\Edit.cshtml" />
+    <Content Include="Views\Products1\Index.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\ARProduse.cshtml" />
+    <Content Include="Views\Home\Rapoarte.cshtml" />
+    <Content Include="Views\Home\DetaliR.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -37,3 +37,21 @@
     font-weight:bold;
 
 }
+
+
+#button1 {
+    border: 0;
+    background: none;
+    display: block;
+    text-align: center;
+    border: 2px solid #455a64;
+    padding: 14px 40px;
+    outline: none;
+    color: black;
+    border-radius: 16px;
+    transition: 0.25s;
+    cursor: pointer
+}
+    #button1:hover {
+        background: #718792
+    }

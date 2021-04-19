@@ -1,0 +1,52 @@
+﻿@model ProiectII.Models.MyModel
+@{
+    ViewBag.Title = "DetaliR";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<link rel="stylesheet" href="~/Content/tabel.css" />
+
+
+<div>
+    <table id="customers">
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Nume Produs
+            </th>
+            <th>
+                Amount
+            </th>
+        </tr>
+
+        @foreach (var item in Model.orderItems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Product.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Order.Amount)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+@section Re{
+    <div>
+        @foreach (var item in Model.user)
+        {
+            @Html.ActionLink(@Html.DisplayFor(modelItem => item.name).ToString(), @Html.DisplayFor(modelItem => item.page).ToString())
+        }
+        <a href=" @Url.Action("Deconectare", "Home")">Log out</a>
+    </div>
+}
