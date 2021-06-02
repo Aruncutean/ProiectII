@@ -22,8 +22,6 @@ namespace ProiectII.Controllers
 
             LoginUsers();
 
-
-
             myModel.categories = db.Categories.ToList();
 
             return View(myModel);
